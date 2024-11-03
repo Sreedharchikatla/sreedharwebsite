@@ -1,57 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sreedhar Chikatla | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="description" content="Portfolio of Raj Narayan Gupta, showcasing software development projects and more." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style2.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+
+    <title>Raj Narayan Gupta | Portfolio</title>
 </head>
-<body>
-    <header>
-        <h1>Sreedhar Chikatla</h1>
-        <p>Professional Portfolio</p>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </nav>
+<body class="body box">
+    <header role="banner" class="Site-head pad-top-500 pad-bottom-500">
+        <div class="wrapper wrapper-lg">
+            <div class="Site-head__inner box-flex space-between align-center">
+                <a href="/" class="Site-head__site-name leading-tight">
+                    <span class="visually-hidden">Raj Narayan Gupta</span>
+                </a>
+                <nav class="nav">
+                    <ul class="nav__list box-flex align-center md:space-before" style="list-style: none;">
+                        <li class="nav__item"><a href="/" class="nav__item-hover" data-id="home">Home</a></li>
+                        <li class="nav__item"><a href="https://Instagram.com/raj__rr/" class="nav__item-hover" data-id="instagram">Instagram</a></li>
+                        <li class="nav__item"><a href="/" class="nav__item-hover" data-id="coffee">Buy me A Coffee</a></li>
+                        <li class="nav__item"><a href="https://github.com/rajguptah/" class="nav__item-hover" data-id="github">Github</a></li>
+                        <li class="nav__item"><a href="https://Instagram.com/bug__developer" rel="external" class="nav__item-hover" data-id="contact">Contact Us</a></li>
+                    </ul>
+                </nav>
+                <label class="switch js-night-toggle">
+                    <input onclick="funtus()" class="switch__checkbox js-night-checkbox" type="checkbox" />
+                    <span id="themeSwitch" class="switch__toggle"></span> Toggle dark mode
+                </label>
+            </div>
+        </div>
     </header>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Write a short paragraph about yourself, your interests, and your background. Highlight what makes you unique as a professional.</p>
-    </section>
-
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Project Title 1</h3>
-            <p>Brief description of the project, the technology used, and what it accomplishes.</p>
+    <div class="bg-orange">
+        <div class="row">
+            <div class="col">
+                <img class="img-girl-google" src="assets/img/19362653.png" alt="Raj Narayan" />
+            </div>
+            <div class="col">
+                <p class="font-main">Hi, I'm Raj Narayan Gupta</p>
+                <p class="sub-head">I like creating fun, interactive things with code. I also talk & write about those experiences.</p>
+                
+                <h1>
+                    <p class="typewrite" data-period="2000" data-type='[ "Software Developer.", "Love Music.", "Scroll Down For More.", "Thanks." ]'>
+                        <span class="wrap"></span>
+                    </p>
+                </h1>
+                <button class="btn-green-main">
+                    <a href="/">Browse Our Services</a>
+                </button>
+            </div>
         </div>
-        <div class="project">
-            <h3>Project Title 2</h3>
-            <p>Another project description. Add as many projects as needed.</p>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Skill 1</li>
-            <li>Skill 2</li>
-            <li>Skill 3</li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>If you'd like to get in touch, feel free to reach out by email or LinkedIn.</p>
-        <a href="mailto:youremail@example.com">youremail@example.com</a>
-    </section>
+    </div>
 
     <footer>
-        <p>&copy; 2024 Sreedhar Chikatla. All rights reserved.</p>
+        <p>&copy; 2024 Raj Narayan Gupta. All rights reserved.</p>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/util.js"></script>
+
+    <script>
+        // Typing Animation Script
+        document.addEventListener("DOMContentLoaded", function() {
+            var TxtType = function (el, toRotate, period) {
+                this.toRotate = toRotate;
+                this.el = el;
+                this.loopNum = 0;
+                this.period = parseInt(period, 10) || 2000;
+                this.txt = "";
+                this.tick();
+                this.isDeleting = false;
+            };
+
+            TxtType.prototype.tick = function () {
+                var i = this.loopNum % this.toRotate.length;
+                var fullTxt = this.toRotate[i];
+                this.txt = this.isDeleting ? fullTxt.substring(0, this.txt.length - 1) : fullTxt.substring(0, this.txt.length + 1);
+                this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+                
+                var that = this;
+                var delta = this.isDeleting ? 100 : 200 - Math.random() * 100;
+
+                if (!this.isDeleting && this.txt === fullTxt) {
+                    delta = this.period;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.txt === "") {
+                    this.isDeleting = false;
+                    this.loopNum++;
+                    delta = 500;
+                }
+
+                setTimeout(function () {
+                    that.tick();
+                }, delta);
+            };
+
+            var elements = document.getElementsByClassName("typewrite");
+            for (var i = 0; i < elements.length; i++) {
+                var toRotate = elements[i].getAttribute("data-type");
+                var period = elements[i].getAttribute("data-period");
+                if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
