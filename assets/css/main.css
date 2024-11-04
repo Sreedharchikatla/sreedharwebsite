@@ -1,0 +1,46 @@
+/* Background for all pages */
+body {
+    background-color: #f0f2f5; /* Adjust this to match your index page background */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header and Site Title */
+header {
+    background-color: #0077cc; /* Header background color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Navigation Bar */
+.nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav__item a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 8px 16px;
+}
+
+.nav__item a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
