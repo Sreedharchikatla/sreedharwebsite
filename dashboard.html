@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Sreedhar Chikatla</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css"> <!-- Optional: Add your custom CSS -->
+    <script src="https://alcdn.msauth.net/browser/2.14.1/js/msal-browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Your Dashboard</h1>
+        <p id="welcome-message">Hello, <span id="username">User</span>!</p>
+    </header>
+
+    <!-- Content Section -->
+    <main>
+        <section>
+            <h2>Your Account Overview</h2>
+            <p>This is a secure area where you can manage your profile, view projects, and much more.</p>
+        </section>
+
+        <!-- Add Your Dashboard Content -->
+        <div class="dashboard-content">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">View Profile</a></li>
+                <li><a href="#">Manage Projects</a></li>
+                <li><a href="#">Account Settings</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Logout Button -->
+    <footer>
+        <button id="logout-btn" onclick="logout()">Logout</button>
+    </footer>
+
+    <!-- JavaScript for Logout -->
+    <script>
+        const msalConfig = {
+            auth: {
+                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
+                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
+                redirectUri: 'https://www.sreedharchikatla.xyz'
+            }
+        };
+
+        const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+        // Function to display user's name
+        document.addEventListener("DOMContentLoaded", () => {
+            const accounts = msalInstance.getAllAccounts();
+            if (accounts.length > 0) {
+                document.getElementById("username").textContent = accounts[0].username;
+            } else {
+                document.getElementById("welcome-message").textContent = "Welcome!";
+            }
+        });
+
+        // Logout Function
+        function logout() {
+            msalInstance.logoutRedirect()
+                .then(() => {
+                    console.log("User logged out");
+                })
+                .catch((error) => {
+                    console.error("Logout failed:", error);
+                });
+        }
+    </script>
+
+</body>
+</html>
