@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Sreedhar Chikatla</title>
-    <link rel="stylesheet" href="assets/css/login.css">
     <script src="https://alcdn.msauth.net/browser/2.14.1/js/msal-browser.min.js"></script>
 </head>
 <body>
 
     <div class="login-container">
-        <h2>Login</h2>
-        <p>Please wait... You will be redirected shortly, or click the button below.</p>
-        <button type="button" onclick="login()">Login with Azure B2C</button>
+        <h2>Redirecting to Login...</h2>
+        <p>Please wait while we redirect you to the login page.</p>
     </div>
 
     <script>
-        // Azure AD B2C Configuration
         const msalConfig = {
             auth: {
-                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c', // Replace with your B2C Application (client) ID
-                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin', // Replace with Azure B2C tenant & user flow name
-                knownAuthorities: ['sreedharchikatla.b2clogin.com'], // Your B2C tenant domain
-                redirectUri: 'https://www.sreedharchikatla.xyz/' // Replace with your redirect URI
+                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
+                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
+                knownAuthorities: ['sreedharchikatla.b2clogin.com'],
+                redirectUri: 'https://www.sreedharchikatla.xyz'
             }
         };
 
@@ -31,27 +28,30 @@
         // Function to trigger Azure B2C login
         function login() {
             msalInstance.loginRedirect({
-                scopes: ["https://sreedharchikatla.onmicrosoft.com/api/user_impersonation"] // Replace with your API scope
+                scopes: ["https://sreedharchikatla.onmicrosoft.com/api/user_impersonation"],
+                prompt: "login" // Forces the sign-in page to appear
             });
         }
 
-        // Automatically Redirect to Azure B2C Login on Page Load
-        window.onload = function () {
-            login(); // Automatically trigger the login function
-        };
-
-        // Handle the Redirect Response after Login
+        // Handle the redirect response
         msalInstance.handleRedirectPromise()
             .then((response) => {
-                if (response !== null) {
+                if (response !== null && response.account) {
                     console.log("Login successful!", response.account);
                     alert(`Welcome, ${response.account.username}!`);
-                    window.location.href = "/dashboard.html"; // Redirect to dashboard page
+                    window.location.href = "/dashboard.html";
+                } else {
+                    // Start login if no active session is found
+                    login();
                 }
             })
             .catch((error) => {
                 console.error("Error during login redirect:", error);
+                login(); // Force login on error
             });
+
+        // Trigger login automatically when the page loads
+        window.onload = login;
     </script>
 
 </body>
