@@ -20,31 +20,75 @@
         </form>
 
         <hr>
-        <!-- Azure B2C Login -->
+        <!-- Azure B2C Buttons -->
         <button id="b2c-login" onclick="loginWithB2C()">Login with Azure B2C</button>
+        <button id="reset-password" onclick="resetPassword()">Forgot Password</button>
     </div>
 
     <script>
-        // MSAL Configuration for Azure AD B2C
-        const msalConfig = {
+        // Azure B2C Configuration for Login Flow
+        const loginConfig = {
             auth: {
                 clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
                 authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
                 knownAuthorities: ['sreedharchikatla.b2clogin.com'],
-                redirectUri: 'https://www.sreedharchikatla.xyz/dashboard.html' // Redirect after login
+                redirectUri: 'https://www.sreedharchikatla.xyz/dashboard.html'
             }
         };
 
-        const msalInstance = new msal.PublicClientApplication(msalConfig);
+        // Azure B2C Configuration for Password Reset Flow
+        const resetConfig = {
+            auth: {
+                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
+                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_passwordreset',
+                knownAuthorities: ['sreedharchikatla.b2clogin.com'],
+                redirectUri: 'https://www.sreedharchikatla.xyz/login.html'
+            }
+        };
 
-        // Trigger Azure B2C Login
+        // Separate MSAL Instances
+        const loginInstance = new msal.PublicClientApplication(loginConfig);
+        const resetInstance = new msal.PublicClientApplication(resetConfig);
+
+        // Trigger Login Flow
         function loginWithB2C() {
-            console.log("Redirecting to Azure B2C...");
-            msalInstance.loginRedirect({
+            console.log("Redirecting to Azure B2C Sign-in...");
+            loginInstance.loginRedirect({
                 scopes: ["openid"],
                 prompt: "login"
             });
         }
+
+        // Trigger Password Reset Flow
+        function resetPassword() {
+            console.log("Redirecting to Password Reset...");
+            resetInstance.loginRedirect({
+                scopes: ["openid"],
+                prompt: "login"
+            });
+        }
+
+        // Handle Redirect Responses
+        loginInstance.handleRedirectPromise()
+            .then((response) => {
+                if (response && response.account) {
+                    console.log("Login successful:", response.account);
+                    sessionStorage.setItem("user", JSON.stringify(response.account));
+                    window.location.href = "/dashboard.html";
+                }
+            })
+            .catch((error) => {
+                console.error("Error during login flow:", error);
+            });
+
+        resetInstance.handleRedirectPromise()
+            .then(() => {
+                console.log("Password reset completed. Returning to login page...");
+                window.location.href = "/login.html"; // Redirect after reset
+            })
+            .catch((error) => {
+                console.error("Error during password reset flow:", error);
+            });
     </script>
 </body>
 </html>
