@@ -14,14 +14,13 @@
         <nav>
             <ul>
                 <li><a href="#" onclick="viewProfile()">View Profile</a></li>
-                <li><a href="#" onclick="editProfile()">Account Settings</a></li>
                 <li><a href="#" onclick="logout()">Logout</a></li>
             </ul>
         </nav>
     </header>
 
     <script>
-        // MSAL Configuration for Redirect URI
+        // MSAL Configuration
         const msalConfig = {
             auth: {
                 clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
@@ -33,40 +32,34 @@
 
         const msalInstance = new msal.PublicClientApplication(msalConfig);
 
-        // Handle Redirect Response and Load Dashboard
-        document.addEventListener("DOMContentLoaded", () => {
-            msalInstance.handleRedirectPromise()
-                .then((response) => {
-                    if (response !== null && response.account) {
-                        console.log("Login successful!", response.account);
-                        sessionStorage.setItem("user", JSON.stringify(response.account));
-                        document.getElementById("welcome-message").innerText = `Hello, ${response.account.username}`;
-                    } else {
-                        // No session, redirect to login
-                        console.log("No active session detected. Redirecting to login...");
-                        window.location.href = "/login.html";
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error handling redirect:", error);
-                    window.location.href = "/login.html"; // Fallback to login
-                });
-        });
+        // Function to Load Dashboard
+        async function loadDashboard() {
+            try {
+                // Process Redirect Response
+                const response = await msalInstance.handleRedirectPromise();
+                let account = response?.account || msalInstance.getAllAccounts()[0];
 
-        // Profile Editing Flow
-        function editProfile() {
-            msalInstance.loginRedirect({
-                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_profileediting',
-                scopes: ["openid"]
-            });
+                if (account) {
+                    console.log("User logged in:", account);
+                    sessionStorage.setItem("user", JSON.stringify(account));
+                    document.getElementById("welcome-message").innerText = `Hello, ${account.username}`;
+                } else {
+                    // No active session, redirect to login
+                    console.log("No active session detected. Redirecting to login...");
+                    window.location.href = "/login.html";
+                }
+            } catch (error) {
+                console.error("Error handling redirect:", error);
+                window.location.href = "/login.html"; // Redirect on failure
+            }
         }
 
-        // Logout
+        // Logout Function
         function logout() {
+            sessionStorage.clear();
             msalInstance.logoutRedirect({
-                postLogoutRedirectUri: 'https://www.sreedharchikatla.xyz'
+                postLogoutRedirectUri: "https://www.sreedharchikatla.xyz/login.html"
             });
         }
-    </script>
-</body>
-</html>
+
+   
