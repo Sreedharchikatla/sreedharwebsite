@@ -32,7 +32,7 @@
         // Function to trigger Azure B2C login
         function login() {
             msalInstance.loginRedirect({
-                scopes: ["https://sreedharchikatla.onmicrosoft.com/api/user_impersonation"],
+                scopes: ["openid"],
                 prompt: "login"
             });
         }
@@ -40,9 +40,8 @@
         // Function to trigger Password Reset User Flow
         function resetPassword() {
             msalInstance.loginRedirect({
-                authority: passwordResetAuthority, // Point to the password reset user flow
-                scopes: ["openid"],
-                prompt: "login"
+                authority: passwordResetAuthority,
+                scopes: ["openid"]
             });
         }
 
@@ -53,14 +52,12 @@
                     console.log("Login successful!", response.account);
                     alert(`Welcome, ${response.account.username}!`);
                     window.location.href = "/dashboard.html";
-                } else {
-                    console.log("No active session detected, triggering login...");
                 }
             })
             .catch((error) => {
                 if (error.errorMessage && error.errorMessage.indexOf("AADB2C90118") > -1) {
-                    // Trigger Password Reset flow if reset password is required
-                    console.log("Redirecting to Password Reset...");
+                    // Trigger Password Reset flow if error AADB2C90118 is returned
+                    console.warn("User clicked 'Forgot Password'. Redirecting to Password Reset...");
                     resetPassword();
                 } else {
                     console.error("Error during login redirect:", error);
