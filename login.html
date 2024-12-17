@@ -11,6 +11,7 @@
 
     <div class="login-container">
         <h2>Login</h2>
+        <p>Please wait... You will be redirected shortly, or click the button below.</p>
         <button type="button" onclick="login()">Login with Azure B2C</button>
     </div>
 
@@ -19,28 +20,33 @@
         const msalConfig = {
             auth: {
                 clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c', // Replace with your B2C Application (client) ID
-                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin', // Replace with your Azure B2C tenant & user flow name
-                knownAuthorities: ['sreedharchikatla.b2clogin.com'], // Replace with your tenant domain
-                redirectUri: 'https://www.sreedharchikatla.xyz' // Replace with your registered Redirect URI
+                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin', // Replace with Azure B2C tenant & user flow name
+                knownAuthorities: ['sreedharchikatla.b2clogin.com'], // Your B2C tenant domain
+                redirectUri: 'https://www.sreedharchikatla.xyz' // Replace with your redirect URI
             }
         };
 
         const msalInstance = new msal.PublicClientApplication(msalConfig);
 
-        // Function to initiate Azure B2C login
+        // Function to trigger Azure B2C login
         function login() {
             msalInstance.loginRedirect({
-                scopes: ["https://sreedharb2c.onmicrosoft.com/api/user_impersonation"] // Replace with your B2C API scope
+                scopes: ["https://sreedharchikatla.onmicrosoft.com/api/user_impersonation"] // Replace with your API scope
             });
         }
 
-        // Handle the Redirect Response
+        // Automatically Redirect to Azure B2C Login on Page Load
+        window.onload = function () {
+            login(); // Automatically trigger the login function
+        };
+
+        // Handle the Redirect Response after Login
         msalInstance.handleRedirectPromise()
             .then((response) => {
                 if (response !== null) {
                     console.log("Login successful!", response.account);
                     alert(`Welcome, ${response.account.username}!`);
-                    window.location.href = "/dashboard.html"; // Redirect to dashboard or another page
+                    window.location.href = "/dashboard.html"; // Redirect to dashboard page
                 }
             })
             .catch((error) => {
