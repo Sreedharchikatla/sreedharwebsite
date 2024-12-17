@@ -9,19 +9,23 @@
 <body>
 
     <div class="login-container">
-        <h2>Redirecting to Login...</h2>
-        <p>Please wait while we redirect you to the login page.</p>
+        <h2>Login</h2>
+        <p>Please wait while we log you in...</p>
+        <button type="button" onclick="login()">Login with Azure B2C</button>
+        <button type="button" onclick="resetPassword()">Forgot Password?</button>
     </div>
 
     <script>
         const msalConfig = {
             auth: {
-                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
+                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c', // Application ID
                 authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
                 knownAuthorities: ['sreedharchikatla.b2clogin.com'],
                 redirectUri: 'https://www.sreedharchikatla.xyz'
             }
         };
+
+        const passwordResetAuthority = "https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_passwordreset";
 
         const msalInstance = new msal.PublicClientApplication(msalConfig);
 
@@ -29,7 +33,16 @@
         function login() {
             msalInstance.loginRedirect({
                 scopes: ["https://sreedharchikatla.onmicrosoft.com/api/user_impersonation"],
-                prompt: "login" // Forces the sign-in page to appear
+                prompt: "login"
+            });
+        }
+
+        // Function to trigger Password Reset User Flow
+        function resetPassword() {
+            msalInstance.loginRedirect({
+                authority: passwordResetAuthority, // Point to the password reset user flow
+                scopes: ["openid"],
+                prompt: "login"
             });
         }
 
@@ -41,16 +54,20 @@
                     alert(`Welcome, ${response.account.username}!`);
                     window.location.href = "/dashboard.html";
                 } else {
-                    // Start login if no active session is found
-                    login();
+                    console.log("No active session detected, triggering login...");
                 }
             })
             .catch((error) => {
-                console.error("Error during login redirect:", error);
-                login(); // Force login on error
+                if (error.errorMessage && error.errorMessage.indexOf("AADB2C90118") > -1) {
+                    // Trigger Password Reset flow if reset password is required
+                    console.log("Redirecting to Password Reset...");
+                    resetPassword();
+                } else {
+                    console.error("Error during login redirect:", error);
+                }
             });
 
-        // Trigger login automatically when the page loads
+        // Automatically trigger login on page load
         window.onload = login;
     </script>
 
