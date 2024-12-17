@@ -4,69 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Sreedhar Chikatla</title>
+    <link rel="stylesheet" href="assets/css/login.css">
     <script src="https://alcdn.msauth.net/browser/2.14.1/js/msal-browser.min.js"></script>
 </head>
 <body>
-
     <div class="login-container">
-        <h2>Login</h2>
-        <p>Please wait while we log you in...</p>
-        <button type="button" onclick="login()">Login with Azure B2C</button>
-        <button type="button" onclick="resetPassword()">Forgot Password?</button>
+        <h2>Login Page</h2>
+        <!-- Placeholder Username/Password -->
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter Username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter Password">
+            <button type="button" onclick="alert('Manual login not implemented')">Login</button>
+        </form>
+
+        <hr>
+        <!-- Azure B2C Login -->
+        <button id="b2c-login" onclick="loginWithB2C()">Login with Azure B2C</button>
     </div>
 
     <script>
+        // MSAL Configuration for Azure AD B2C
         const msalConfig = {
             auth: {
-                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c', // Application ID
+                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c', // Replace with your Application ID
                 authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
                 knownAuthorities: ['sreedharchikatla.b2clogin.com'],
                 redirectUri: 'https://www.sreedharchikatla.xyz'
             }
         };
 
-        const passwordResetAuthority = "https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_passwordreset";
-
         const msalInstance = new msal.PublicClientApplication(msalConfig);
 
-        // Function to trigger Azure B2C login
-        function login() {
+        function loginWithB2C() {
             msalInstance.loginRedirect({
                 scopes: ["openid"],
                 prompt: "login"
             });
         }
 
-        // Function to trigger Password Reset User Flow
-        function resetPassword() {
-            msalInstance.loginRedirect({
-                authority: passwordResetAuthority,
-                scopes: ["openid"]
-            });
-        }
-
-        // Handle the redirect response
+        // Handle Redirect for Authentication Flow
         msalInstance.handleRedirectPromise()
-            .then((response) => {
-                if (response !== null && response.account) {
-                    console.log("Login successful!", response.account);
-                    alert(`Welcome, ${response.account.username}!`);
+            .then(response => {
+                if (response && response.account) {
+                    sessionStorage.setItem("user", JSON.stringify(response.account));
                     window.location.href = "/dashboard.html";
                 }
             })
-            .catch((error) => {
-                if (error.errorMessage && error.errorMessage.indexOf("AADB2C90118") > -1) {
-                    // Trigger Password Reset flow if error AADB2C90118 is returned
-                    console.warn("User clicked 'Forgot Password'. Redirecting to Password Reset...");
-                    resetPassword();
-                } else {
-                    console.error("Error during login redirect:", error);
-                }
+            .catch(error => {
+                console.error("Error during login:", error);
             });
-
-        // Automatically trigger login on page load
-        window.onload = login;
     </script>
-
 </body>
 </html>
