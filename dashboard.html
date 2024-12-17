@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Sreedhar Chikatla</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script src="https://alcdn.msauth.net/browser/2.14.1/js/msal-browser.min.js"></script>
 </head>
 <body>
     <header>
@@ -20,27 +21,51 @@
     </header>
 
     <script>
-        // Load User Session
-        const user = JSON.parse(sessionStorage.getItem("user"));
+        // MSAL Configuration for Redirect URI
+        const msalConfig = {
+            auth: {
+                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
+                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
+                knownAuthorities: ['sreedharchikatla.b2clogin.com'],
+                redirectUri: 'https://www.sreedharchikatla.xyz/dashboard.html'
+            }
+        };
 
-        if (!user) {
-            // Redirect to login page if no session
-            window.location.href = "/login.html";
-        } else {
-            document.getElementById("welcome-message").innerText = `Hello, ${user.username}`;
-        }
+        const msalInstance = new msal.PublicClientApplication(msalConfig);
 
-        function viewProfile() {
-            alert("View Profile - Coming Soon!");
-        }
+        // Handle Redirect Response and Load Dashboard
+        document.addEventListener("DOMContentLoaded", () => {
+            msalInstance.handleRedirectPromise()
+                .then((response) => {
+                    if (response !== null && response.account) {
+                        console.log("Login successful!", response.account);
+                        sessionStorage.setItem("user", JSON.stringify(response.account));
+                        document.getElementById("welcome-message").innerText = `Hello, ${response.account.username}`;
+                    } else {
+                        // No session, redirect to login
+                        console.log("No active session detected. Redirecting to login...");
+                        window.location.href = "/login.html";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error handling redirect:", error);
+                    window.location.href = "/login.html"; // Fallback to login
+                });
+        });
 
+        // Profile Editing Flow
         function editProfile() {
-            window.location.href = "https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_profileediting";
+            msalInstance.loginRedirect({
+                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_profileediting',
+                scopes: ["openid"]
+            });
         }
 
+        // Logout
         function logout() {
-            sessionStorage.clear(); // Clear session
-            window.location.href = "https://www.sreedharchikatla.xyz"; // Redirect to main page
+            msalInstance.logoutRedirect({
+                postLogoutRedirectUri: 'https://www.sreedharchikatla.xyz'
+            });
         }
     </script>
 </body>
