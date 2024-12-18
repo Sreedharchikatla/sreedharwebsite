@@ -1,58 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Sreedhar Chikatla</title>
-    <link rel="stylesheet" href="assets/css/login.css">
-    <script src="https://alcdn.msauth.net/browser/2.14.1/js/msal-browser.min.js"></script>
-</head>
-<body>
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script
+   src="https://kit.fontawesome.com/64d58efce2.js"
+   crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="assets/css/login.css" />
+  <title>Sign in & Sign up Form</title>`
+  
+ </head>
 
-    <div class="login-container">
-        <h2>Login</h2>
-        <p>Please wait... You will be redirected shortly, or click the button below.</p>
-        <button type="button" onclick="login()">Login with Azure B2C</button>
+ <body>
+  <div class="container">
+   <div class="forms-container">
+    <div class="signin-signup">
+     <form action="#" class="sign-in-form">
+      <h2 class="title">Sign in</h2>
+      <div class="input-field">
+       <i class="fas fa-user"></i>
+       <input type="text" placeholder="Username" />
+      </div>
+      <div class="input-field">
+       <i class="fas fa-lock"></i>
+       <input type="password" placeholder="Password" />
+      </div>
+      <input class="btn solid" type="submit" value="Login" />
+      <p class="social-text">Or Sign in with social platforms</p>
+      <div class="social-media">
+       <a href="#" class="social-icon">
+        <i class="fab fa-facebook-f"></i>
+       </a>
+       <a href="#" class="social-icon">
+        <i class="fab fa-twitter"></i>
+       </a>
+       <a href="#" class="social-icon">
+        <i class="fab fa-google"></i>
+       </a>
+       <a href="#" class="social-icon">
+        <i class="fab fa-linkedin-in"></i>
+       </a>
+      </div>
+     </form>
+     <form action="#" class="sign-up-form">
+      <h2 class="title">Sign up</h2>
+      <div class="input-field">
+       <i class="fas fa-user"></i>
+       <input type="text" placeholder="Username" />
+      </div>
+      <div class="input-field">
+       <i class="fas fa-envelope"></i>
+       <input type="email" placeholder="Email" />
+      </div>
+      <div class="input-field">
+       <i class="fas fa-lock"></i>
+       <input type="password" placeholder="Password" />
+      </div>
+      <input type="submit" class="btn" value="Sign up" />
+      <p class="social-text">Or Sign up with social platforms</p>
+      <div class="social-media">
+       <a href="#" class="social-icon">
+        <i class="fab fa-facebook-f"></i>
+       </a>
+       <a href="#" class="social-icon">
+        <i class="fab fa-twitter"></i>
+       </a>
+       <a href="#" class="social-icon">
+        <i class="fab fa-google"></i>
+       </a>
+       <a href="#" class="social-icon">
+        <i class="fab fa-linkedin-in"></i>
+       </a>
+      </div>
+     </form>
     </div>
+   </div>
 
-    <script>
-        // Azure AD B2C Configuration
-        const msalConfig = {
-            auth: {
-                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c', // Replace with your B2C Application (client) ID
-                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin', // Replace with Azure B2C tenant & user flow name
-                knownAuthorities: ['sreedharchikatla.b2clogin.com'], // Your B2C tenant domain
-                redirectUri: 'https://www.sreedharchikatla.xyz/dashboard.html' // Replace with your redirect URI
-            }
-        };
-
-        const msalInstance = new msal.PublicClientApplication(msalConfig);
-
-        // Function to trigger Azure B2C login
-        function login() {
-            msalInstance.loginRedirect({
-                scopes: ["https://sreedharchikatla.onmicrosoft.com/api/user_impersonation"] // Replace with your API scope
-            });
-        }
-
-        // Automatically Redirect to Azure B2C Login on Page Load
-        window.onload = function () {
-            login(); // Automatically trigger the login function
-        };
-
-        // Handle the Redirect Response after Login
-        msalInstance.handleRedirectPromise()
-            .then((response) => {
-                if (response !== null) {
-                    console.log("Login successful!", response.account);
-                    alert(`Welcome, ${response.account.username}!`);
-                    window.location.href = "/dashboard.html"; // Redirect to dashboard page
-                }
-            })
-            .catch((error) => {
-                console.error("Error during login redirect:", error);
-            });
-    </script>
-
-</body>
+   <div class="panels-container">
+    <div class="panel left-panel">
+     <div class="content">
+      <h3>New here ?</h3>
+      <p>
+        Online tutor Finder provides students the best way to reach out the best tutor for them. 
+        Know more about us <a href="file:///G:/AGILE%20workshop/Website/Home%20Page/index.html">here</a>.
+      </p>
+      <button class="btn transparent" id="sign-up-btn">Sign up</button>
+     </div>
+     <img src="assets/img/log.svg" class="image" alt="" />
+    </div>
+    <div class="panel right-panel">
+     <div class="content">
+      <h3>One of us?</h3>
+      <p>
+        Online tutor Finder provides students the best way to reach out the best tutor for them. 
+        Know more about us <a href="file:///D:/Agile%20Workshop/Reveal/index1.html">here</a>.
+      </p>
+      <button class="btn transparent" id="sign-in-btn">Sign in</button>
+     </div>
+     <img src="assets/img/register.svg" class="image" alt="A picture here"/>
+    </div>
+   </div>
+  </div>
+  <script src="app.js"></script>
+ </body>
 </html>
