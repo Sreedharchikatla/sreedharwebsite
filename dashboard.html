@@ -1,65 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Sreedhar Chikatla</title>
-    <link rel="stylesheet" href="assets/css/dashboard.css">
-    <script src="https://alcdn.msauth.net/browser/2.14.1/js/msal-browser.min.js"></script>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
-        <h1>Welcome to Your Dashboard</h1>
-        <p id="welcome-message">Loading...</p>
         <nav>
             <ul>
-                <li><a href="#" onclick="viewProfile()">View Profile</a></li>
-                <li><a href="#" onclick="logout()">Logout</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="logout.html">Logout</a></li>
             </ul>
         </nav>
     </header>
 
-    <script>
-        // MSAL Configuration
-        const msalConfig = {
-            auth: {
-                clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
-                authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
-                knownAuthorities: ['sreedharchikatla.b2clogin.com'],
-                redirectUri: 'https://www.sreedharchikatla.xyz/dashboard.html'
-            }
-        };
+    <main>
+        <section class="dashboard-overview">
+            <h1>Welcome to your Dashboard</h1>
+            <div class="overview-cards">
+                <div class="card">
+                    <h2>Card Title 1</h2>
+                    <p>Content for the first card.</p>
+                </div>
+                <div class="card">
+                    <h2>Card Title 2</h2>
+                    <p>Content for the second card.</p>
+                </div>
+                <div class="card">
+                    <h2>Card Title 3</h2>
+                    <p>Content for the third card.</p>
+                </div>
+            </div>
+        </section>
 
-        const msalInstance = new msal.PublicClientApplication(msalConfig);
+        <section class="dashboard-charts">
+            <h2>Analytics</h2>
+            <div class="chart-container">
+                <canvas id="chart1"></canvas>
+                <canvas id="chart2"></canvas>
+            </div>
+        </section>
+    </main>
 
-        // Function to Load Dashboard
-        async function loadDashboard() {
-            try {
-                // Process Redirect Response
-                const response = await msalInstance.handleRedirectPromise();
-                let account = response?.account || msalInstance.getAllAccounts()[0];
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
 
-                if (account) {
-                    console.log("User logged in:", account);
-                    sessionStorage.setItem("user", JSON.stringify(account));
-                    document.getElementById("welcome-message").innerText = `Hello, ${account.username}`;
-                } else {
-                    // No active session, redirect to login
-                    console.log("No active session detected. Redirecting to login...");
-                    window.location.href = "/login.html";
-                }
-            } catch (error) {
-                console.error("Error handling redirect:", error);
-                window.location.href = "/login.html"; // Redirect on failure
-            }
-        }
+    <script src="scripts.js"></script>
+</body>
 
-        // Logout Function
-        function logout() {
-            sessionStorage.clear();
-            msalInstance.logoutRedirect({
-                postLogoutRedirectUri: "https://www.sreedharchikatla.xyz/login.html"
-            });
-        }
-
-   
+</html>
