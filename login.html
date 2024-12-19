@@ -10,7 +10,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="assets/css/login.css">
-
 	</head>
 	<body>
 	<section class="ftco-section">
@@ -36,8 +35,8 @@
 		              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 		            </div>
 		            <div class="form-group d-flex justify-content-between">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
-		            	<button type="button" class="form-control btn btn-secondary rounded submit px-3">Sign in with Azure</button>
+		            	<button type="submit" class="form-control">Sign In</button>
+		            	<button type="button" id="azure-b2c-btn" class="form-control">Sign in with Azure</button>
 		            </div>
 		            <div class="form-group d-md-flex">
 		            	<div class="w-50 text-left">
@@ -64,6 +63,22 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // Azure B2C Configuration for Login Flow
+    const loginConfig = {
+        auth: {
+            clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
+            authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
+            knownAuthorities: ['sreedharchikatla.b2clogin.com'],
+            redirectUri: 'https://www.sreedharchikatla.xyz/dashboard.html'
+        }
+    };
+
+    document.getElementById('azure-b2c-btn').addEventListener('click', function () {
+        const { auth } = loginConfig;
+        const authUrl = `${auth.authority}?client_id=${auth.clientId}&response_type=token&redirect_uri=${encodeURIComponent(auth.redirectUri)}&scope=openid&state=12345`;
+        window.location.href = authUrl;
+    });
+
     document.getElementById('signup-link').addEventListener('click', function(event) {
         event.preventDefault();
         alert('Please contact admin@sreedharchikatla.xyz to create an account to use');
