@@ -1,20 +1,12 @@
-// Azure B2C Configuration for Login Flow
-const loginConfig = {
-    auth: {
-        clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
-        authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
-        knownAuthorities: ['sreedharchikatla.b2clogin.com'],
-        redirectUri: 'https://www.sreedharchikatla.xyz/dashboard.html'
-    }
-};
+const clientId = process.env.REACT_APP_AZURE_CLIENT_ID;
+const authority = process.env.REACT_APP_AZURE_AUTHORITY;
+const redirectUri = process.env.REACT_APP_AZURE_REDIRECT_URI;
+const scope = 'openid';
+const responseType = 'code';
+const nonce = 'defaultNonce';
+const prompt = 'login';
 
 document.getElementById('azure-b2c-btn').addEventListener('click', function () {
-    const { auth } = loginConfig;
-    const authUrl = `${auth.authority}?client_id=${auth.clientId}&response_type=token&redirect_uri=${encodeURIComponent(auth.redirectUri)}&scope=openid&state=12345`;
+    const authUrl = `${authority}/oauth2/v2.0/authorize?p=B2C_1_signupsignin&client_id=${clientId}&nonce=${nonce}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&response_type=${responseType}&prompt=${prompt}`;
     window.location.href = authUrl;
-});
-
-document.getElementById('signup-link').addEventListener('click', function(event) {
-    event.preventDefault();
-    alert('Please contact admin@sreedharchikatla.xyz to create an account to use');
 });
