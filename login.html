@@ -1,107 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script
-   src="https://kit.fontawesome.com/64d58efce2.js"
-   crossorigin="anonymous"
-  ></script>
-  <link rel="stylesheet" href="assets/css/login.css" />
-  <title>Sign in & Sign up Form</title>`
-  
- </head>
+  <head>
+  	<title>Login 05</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
- <body>
-  <div class="container">
-   <div class="forms-container">
-    <div class="signin-signup">
-     <form action="#" class="sign-in-form">
-      <h2 class="title">Sign in</h2>
-      <div class="input-field">
-       <i class="fas fa-user"></i>
-       <input type="text" placeholder="Username" />
-      </div>
-      <div class="input-field">
-       <i class="fas fa-lock"></i>
-       <input type="password" placeholder="Password" />
-      </div>
-      <input class="btn solid" type="submit" value="Login" />
-      <p class="social-text">Or Sign in with social platforms</p>
-      <div class="social-media">
-       <a href="#" class="social-icon">
-        <i class="fab fa-facebook-f"></i>
-       </a>
-       <a href="#" class="social-icon">
-        <i class="fab fa-twitter"></i>
-       </a>
-       <a href="#" class="social-icon">
-        <i class="fab fa-google"></i>
-       </a>
-       <a href="#" class="social-icon">
-        <i class="fab fa-linkedin-in"></i>
-       </a>
-      </div>
-     </form>
-     <form action="#" class="sign-up-form">
-      <h2 class="title">Sign up</h2>
-      <div class="input-field">
-       <i class="fas fa-user"></i>
-       <input type="text" placeholder="Username" />
-      </div>
-      <div class="input-field">
-       <i class="fas fa-envelope"></i>
-       <input type="email" placeholder="Email" />
-      </div>
-      <div class="input-field">
-       <i class="fas fa-lock"></i>
-       <input type="password" placeholder="Password" />
-      </div>
-      <input type="submit" class="btn" value="Sign up" />
-      <p class="social-text">Or Sign up with social platforms</p>
-      <div class="social-media">
-       <a href="#" class="social-icon">
-        <i class="fab fa-facebook-f"></i>
-       </a>
-       <a href="#" class="social-icon">
-        <i class="fab fa-twitter"></i>
-       </a>
-       <a href="#" class="social-icon">
-        <i class="fab fa-google"></i>
-       </a>
-       <a href="#" class="social-icon">
-        <i class="fab fa-linkedin-in"></i>
-       </a>
-      </div>
-     </form>
-    </div>
-   </div>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-   <div class="panels-container">
-    <div class="panel left-panel">
-     <div class="content">
-      <h3>New here ?</h3>
-      <p>
-        Online tutor Finder provides students the best way to reach out the best tutor for them. 
-        Know more about us <a href="file:///G:/AGILE%20workshop/Website/Home%20Page/index.html">here</a>.
-      </p>
-      <button class="btn transparent" id="sign-up-btn">Sign up</button>
-     </div>
-     <img src="assets/img/log.svg" class="image" alt="" />
-    </div>
-    <div class="panel right-panel">
-     <div class="content">
-      <h3>One of us?</h3>
-      <p>
-        Online tutor Finder provides students the best way to reach out the best tutor for them. 
-        Know more about us <a href="file:///D:/Agile%20Workshop/Reveal/index1.html">here</a>.
-      </p>
-      <button class="btn transparent" id="sign-in-btn">Sign in</button>
-     </div>
-     <img src="assets/img/register.svg" class="image" alt="A picture here"/>
-    </div>
-   </div>
-  </div>
-  <script src="app.js"></script>
- </body>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="assets/css/login.css">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-7 col-lg-5">
+					<div class="wrap">
+						<div class="img" style="background-image: url(assets/img/bg-1.jpg);"></div>
+						<div class="login-wrap p-4 p-md-5">
+			      	<div class="d-flex">
+			      		<div class="w-100">
+			      			<h3 class="mb-4">Sign In</h3>
+			      		</div>
+								<div class="w-100">
+									<p class="social-media d-flex justify-content-end">
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+									</p>
+								</div>
+			      	</div>
+							<form action="#" class="signin-form">
+			      		<div class="form-group mt-3">
+			      			<input type="text" class="form-control" required>
+			      			<label class="form-control-placeholder" for="username">Username</label>
+			      		</div>
+		            <div class="form-group">
+		              <input id="password-field" type="password" class="form-control" required>
+		              <label class="form-control-placeholder" for="password">Password</label>
+		              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+		            </div>
+		            <div class="form-group">
+		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+		            </div>
+		            <div class="form-group d-md-flex">
+		            	<div class="w-50 text-left">
+			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+									  <input type="checkbox" checked>
+									  <span class="checkmark"></span>
+										</label>
+									</div>
+									<div class="w-50 text-md-right">
+										<a href="#">Forgot Password</a>
+									</div>
+		            </div>
+		          </form>
+		          <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+		        </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+	</body>
 </html>
