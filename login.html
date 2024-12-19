@@ -10,7 +10,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="assets/css/login.css">
-
 	</head>
 	<body>
 	<section class="ftco-section">
@@ -20,40 +19,35 @@
 					<div class="wrap">
 						<div class="img" style="background-image: url(assets/img/bg-1.jpg);"></div>
 						<div class="login-wrap p-4 p-md-5">
-			      	<div class="d-flex">
-			      		<div class="w-100">
-			      			<h3 class="mb-4">Sign In</h3>
-			      		</div>
-								<div class="w-100">
-									<p class="social-media d-flex justify-content-end">
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-									</p>
-								</div>
-			      	</div>
-							<form action="#" class="signin-form">
-			      		<div class="form-group mt-3">
-			      			<input type="text" class="form-control" required>
-			      			<label class="form-control-placeholder" for="username">Username</label>
-			      		</div>
+		      	<div class="d-flex">
+		      		<div class="w-100">
+		      			<h3 class="mb-4">Sign In</h3>
+		      		</div>
+		      	</div>
+						<form action="#" class="signin-form">
+		      		<div class="form-group mt-3">
+		      			<input type="text" class="form-control" required>
+		      			<label class="form-control-placeholder" for="username">Username</label>
+		      		</div>
 		            <div class="form-group">
 		              <input id="password-field" type="password" class="form-control" required>
 		              <label class="form-control-placeholder" for="password">Password</label>
 		              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 		            </div>
-		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+		            <div class="form-group d-flex justify-content-between">
+		            	<button type="submit" class="form-control">Sign In</button>
+		            	<button type="button" id="azure-b2c-btn" class="form-control">Sign in with Azure</button>
 		            </div>
 		            <div class="form-group d-md-flex">
 		            	<div class="w-50 text-left">
 			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
 									  <input type="checkbox" checked>
 									  <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="w-50 text-md-right">
-										<a href="#">Forgot Password</a>
-									</div>
+									</label>
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="#">Forgot Password</a>
+								</div>
 		            </div>
 		          </form>
 		          <p class="text-center">Not a member? <a href="#" id="signup-link">Sign Up</a></p>
@@ -69,9 +63,25 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // Azure B2C Configuration for Login Flow
+    const loginConfig = {
+        auth: {
+            clientId: '3b68b2c1-7a19-4ef2-93ff-a7fea2cd5f0c',
+            authority: 'https://sreedharchikatla.b2clogin.com/sreedharchikatla.onmicrosoft.com/B2C_1_signupsignin',
+            knownAuthorities: ['sreedharchikatla.b2clogin.com'],
+            redirectUri: 'https://www.sreedharchikatla.xyz/dashboard.html'
+        }
+    };
+
+    document.getElementById('azure-b2c-btn').addEventListener('click', function () {
+        const { auth } = loginConfig;
+        const authUrl = `${auth.authority}?client_id=${auth.clientId}&response_type=token&redirect_uri=${encodeURIComponent(auth.redirectUri)}&scope=openid&state=12345`;
+        window.location.href = authUrl;
+    });
+
     document.getElementById('signup-link').addEventListener('click', function(event) {
         event.preventDefault();
-        alert('Please contact Admin@sreedharchikatla.xyz to create an account to use');
+        alert('Please contact admin@sreedharchikatla.xyz to create an account to use');
     });
   </script>
 
