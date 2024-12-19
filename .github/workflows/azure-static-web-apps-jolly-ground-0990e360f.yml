@@ -19,6 +19,24 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Replace Environment Variables in auth.js
+        env:
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_AUTHORITY: ${{ secrets.AZURE_AUTHORITY }}
+          AZURE_REDIRECT_URI: ${{ secrets.AZURE_REDIRECT_URI }}
+        run: |
+          node -e "
+          const fs = require('fs');
+          const filePath = './assets/js/auth.js';
+          let content = fs.readFileSync(filePath, 'utf8');
+          content = content
+            .replace('<REACT_APP_AZURE_CLIENT_ID>', process.env.AZURE_CLIENT_ID)
+            .replace('<REACT_APP_AZURE_AUTHORITY>', process.env.AZURE_AUTHORITY)
+            .replace('<REACT_APP_AZURE_REDIRECT_URI>', process.env.AZURE_REDIRECT_URI);
+          fs.writeFileSync(filePath, content, 'utf8');
+          console.log('Environment variables replaced in auth.js');
+          "
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
