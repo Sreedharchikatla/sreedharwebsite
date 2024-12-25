@@ -53,6 +53,21 @@
         <p>&copy; 2024 Your Company. All rights reserved.</p>
     </footer>
 
+    <script>
+        function checkAuthentication() {
+            const idToken = localStorage.getItem('id_token');
+            if (!idToken) {
+                // If no token, redirect to login page
+                window.location.href = '/index.html';
+            } else {
+                console.log('User is authenticated');
+            }
+        }
+    
+        // Run authentication check
+        checkAuthentication();
+    </script>
+    
     <script src="scripts.js"></script>
 </body>
 
