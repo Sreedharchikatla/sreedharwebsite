@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
 </head>
 
 <body>
@@ -53,21 +54,40 @@
         <p>&copy; 2024 Your Company. All rights reserved.</p>
     </footer>
 
+    <!-- Authentication Check -->
     <script>
         function checkAuthentication() {
             const idToken = localStorage.getItem('id_token');
             if (!idToken) {
-                // If no token, redirect to login page
+                // Redirect to login if no token is found
                 window.location.href = '/index.html';
-            } else {
-                console.log('User is authenticated');
+                return;
+            }
+
+            try {
+                // Decode the JWT to extract expiration information
+                const decodedToken = jwt_decode(idToken);
+                const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+
+                if (decodedToken.exp < currentTime) {
+                    // If token is expired, remove it and redirect to login
+                    console.warn('Token expired');
+                    localStorage.removeItem('id_token');
+                    window.location.href = '/index.html';
+                } else {
+                    console.log('User is authenticated');
+                }
+            } catch (error) {
+                console.error('Invalid token:', error);
+                localStorage.removeItem('id_token'); // Clear invalid token
+                window.location.href = '/index.html';
             }
         }
-    
+
         // Run authentication check
         checkAuthentication();
     </script>
-    
+
     <script src="scripts.js"></script>
 </body>
 
