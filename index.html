@@ -2,74 +2,231 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Portfolio of Sreedhar Chikatla, showcasing software development projects and more." />
+    <meta name="description" content="Sreedhar Chikatla — Network Administrator & Cloud Engineer with 7+ years of experience in infrastructure, virtualization, and cloud operations." />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/style2.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
-
-    <title>Sreedhar Chikatla | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <title>Sreedhar Chikatla</title>
 </head>
-<body class="body box">
-    <header role="banner" class="Site-head pad-top-500 pad-bottom-500">
-        <div class="wrapper wrapper-lg">
-            <div class="Site-head__inner box-flex space-between align-center">
-                <a href="/" class="Site-head__site-name leading-tight">
-                    <span class="visually-hidden">Sreedhar Chikatla</span>
-                </a>
-                <nav class="nav">
-                    <ul class="nav__list box-flex align-center md:space-before" style="list-style: none;">
-                        <li class="nav__item"><a href="/" class="nav__item-hover" data-id="home">Home</a></li>
-                        <li class="nav__item"><a href="aboutme.html" class="nav__item-hover" data-id="aboutme">About Me</a></li>
-                        <li class="nav__item"><a href="https://cloud.sreedharchikatla.xyz/s/q58xBX8ia2cneHe" target="_blank" class="nav__item-hover" data-id="resume">Resume</a></li>
-                        <li class="nav__item"><a href="projects.html" class="nav__item-hover" data-id="projects">Projects</a></li>
-                        <li class="nav__item"><a href="contact.html" class="nav__item-hover" data-id="contact">Contact Me</a></li>
-                        <li class="nav__item"><a href="https://cloud.sreedharchikatla.xyz" class="nav__item-hover" data-id="login">Login</a></li>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#hero" class="nav-logo">Sreedhar<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://cloud.sreedharchikatla.xyz/s/q58xBX8ia2cneHe" target="_blank">Resume <i class="fas fa-external-link-alt" style="font-size:0.7rem"></i></a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-inner">
+            <div class="hero-image">
+                <img src="assets/img/19362653.png" alt="Sreedhar Chikatla" />
+            </div>
+            <h1 class="hero-name">Sreedhar Chikatla</h1>
+            <div class="hero-typing">
+                <span class="typewrite" data-period="2000" data-type='["Network Administrator.", "Cloud Engineer.", "DevOps Specialist.", "Infrastructure Architect."]'>
+                    <span class="wrap"></span>
+                </span>
+            </div>
+            <p class="hero-tagline">
+                MS in Information Technology · 7+ years building and managing enterprise infrastructure, cloud environments, and network systems.
+            </p>
+            <div class="hero-socials">
+                <a href="https://github.com/sreedharchikatla" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/sreedharchikatla" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <a href="https://cloud.sreedharchikatla.xyz/s/q58xBX8ia2cneHe" target="_blank" class="btn btn-primary">
+                <i class="fas fa-file-alt"></i> View Resume
+            </a>
+            <div class="scroll-hint">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Experience</h2>
+            <p class="section-subtitle fade-in">7+ years across networking, cloud ops, and systems administration</p>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">May 2023 — Present</div>
+                    <h3 class="timeline-role">Network Administrator</h3>
+                    <p class="timeline-company">Exam Works · New Jersey</p>
+                    <ul class="timeline-bullets">
+                        <li>Deploy and configure network infrastructure including routers, switches, and structured cabling for high-availability systems</li>
+                        <li>Configure and maintain Hyper-V, VMware, and virtualization environments ensuring uptime and performance</li>
+                        <li>Manage Active Directory, DNS, DHCP, and Group Policy for enterprise infrastructure</li>
                     </ul>
-                </nav>
-                <label class="switch js-night-toggle">
-                    <input onclick="funtus()" class="switch__checkbox js-night-checkbox" type="checkbox" />
-                    <span id="themeSwitch" class="switch__toggle"></span> Toggle dark mode
-                </label>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">Sep 2021 — Jan 2023</div>
+                    <h3 class="timeline-role">Cloud Ops Administration Analyst</h3>
+                    <p class="timeline-company">Accenture · Client: CVS Health · Hyderabad, India</p>
+                    <ul class="timeline-bullets">
+                        <li>Implemented and optimized cloud infrastructure on AWS and Azure ensuring high availability and scalability</li>
+                        <li>Managed Windows and Linux VMs, reducing resolution time by 40% and maintaining 99.9% uptime</li>
+                        <li>Enhanced infrastructure with Ansible and Terraform, improving operational efficiency</li>
+                    </ul>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">Mar 2018 — Jun 2021</div>
+                    <h3 class="timeline-role">Network Engineer</h3>
+                    <p class="timeline-company">Saven Global Services · Client: Vultus Inc · Hyderabad, India</p>
+                    <ul class="timeline-bullets">
+                        <li>Set up VPN tunnels between on-premises and Azure, optimizing NAT policies and firewall configurations</li>
+                        <li>Implemented network virtualization reducing latency by 35% and improving data transfer by 20%</li>
+                        <li>Managed Windows servers (2008/2012/2016) reducing downtime by 30%</li>
+                    </ul>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">Oct 2016 — Mar 2018</div>
+                    <h3 class="timeline-role">System Administrator</h3>
+                    <p class="timeline-company">CMS IT Services · Hyderabad, India</p>
+                    <ul class="timeline-bullets">
+                        <li>Administered Windows servers, VMware ESXi, and Hyper-V environments</li>
+                        <li>Developed PowerShell scripts to automate tasks and reduce manual intervention</li>
+                        <li>Conducted proactive monitoring using Nagios and Zabbix for system stability</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <div class="bg-orange">
-        <div class="row">
-            <div class="col">
-                <img class="img-girl-google" src="assets/img/19362653.png" alt="Sreedhar Chikatla" />
-            </div>
-            <div class="col">
-                <p class="font-main">Hi, I'm Sreedhar Chikatla</p>
-                <p class="sub-head">I'm passionate about optimizing cloud environments and developing reliable CI/CD pipelines that drive continuous improvement.</p>
-                
-                <h1>
-                    <p class="typewrite" data-period="2000" data-type='[ "Cloud Engineer.", "Tech Freak.", "Scroll Down For More.", "Thanks." ]'>
-                        <span class="wrap"></span>
-                    </p>
-                </h1>
-               
+    <section class="section" style="background: var(--sky-subtle);" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Skills</h2>
+            <p class="section-subtitle fade-in">Technologies and tools I work with</p>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <div class="skill-card-icon"><i class="fas fa-cloud"></i></div>
+                    <h4>Cloud Platforms</h4>
+                    <p>Azure, AWS, Google Cloud Platform · IaaS, PaaS, SaaS</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-card-icon"><i class="fas fa-code"></i></div>
+                    <h4>Infrastructure as Code</h4>
+                    <p>Terraform, ARM Templates, Ansible, JSON</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-card-icon"><i class="fab fa-docker"></i></div>
+                    <h4>Containers & Orchestration</h4>
+                    <p>Docker, Kubernetes</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-card-icon"><i class="fas fa-terminal"></i></div>
+                    <h4>Scripting & Languages</h4>
+                    <p>PowerShell, Bash, Python</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-card-icon"><i class="fas fa-chart-area"></i></div>
+                    <h4>Monitoring & Management</h4>
+                    <p>Azure Monitor, Log Analytics, Nagios, Zabbix</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-card-icon"><i class="fab fa-linux"></i></div>
+                    <h4>Operating Systems</h4>
+                    <p>Ubuntu, CentOS, RedHat Linux, Windows Server</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-card-icon"><i class="fas fa-network-wired"></i></div>
+                    <h4>Networking</h4>
+                    <p>TCP/IP, DNS, DHCP, VPN, Firewalls, Active Directory</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-card-icon"><i class="fas fa-server"></i></div>
+                    <h4>Virtualization</h4>
+                    <p>Hyper-V, VMware ESXi, Azure Site Recovery</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2024 Sreedhar Chikatla. All rights reserved.</p>
+    <section class="section" id="certifications">
+        <div class="container">
+            <h2 class="section-title fade-in">Certifications</h2>
+            <p class="section-subtitle fade-in">Industry-recognized credentials</p>
+            <div class="certs-grid">
+                <div class="cert-card fade-in">
+                    <div class="cert-card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>AZ-500</h4>
+                    <p>Azure Security Engineer Associate</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-card-icon"><i class="fas fa-user-cog"></i></div>
+                    <h4>AZ-104</h4>
+                    <p>Azure Administrator Associate</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-card-icon"><i class="fab fa-microsoft"></i></div>
+                    <h4>Azure Fundamentals</h4>
+                    <p>Microsoft Certified</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-card-icon"><i class="fas fa-server"></i></div>
+                    <h4>MCSA</h4>
+                    <p>Windows Server 2012</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--sky-subtle);" id="contact">
+        <div class="container">
+            <div class="contact-card fade-in">
+                <h2>Let's Connect</h2>
+                <p>Open to opportunities in cloud engineering, DevOps, and network administration.</p>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <span>sreedhar@sreedharchikatla.xyz</span>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>United States</span>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>MS in IT — Valparaiso University, 2024</span>
+                    </div>
+                </div>
+                <div class="contact-socials">
+                    <a href="https://github.com/sreedharchikatla" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/sreedharchikatla" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <a href="https://cloud.sreedharchikatla.xyz/s/q58xBX8ia2cneHe" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-file-alt"></i> Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sreedhar Chikatla</p>
+        </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/util.js"></script>
-
     <script>
-        // Typing Animation Script
+        // Typing animation
         document.addEventListener("DOMContentLoaded", function() {
-            var TxtType = function (el, toRotate, period) {
+            var TxtType = function(el, toRotate, period) {
                 this.toRotate = toRotate;
                 this.el = el;
                 this.loopNum = 0;
@@ -78,38 +235,83 @@
                 this.tick();
                 this.isDeleting = false;
             };
-
-            TxtType.prototype.tick = function () {
+            TxtType.prototype.tick = function() {
                 var i = this.loopNum % this.toRotate.length;
                 var fullTxt = this.toRotate[i];
-                this.txt = this.isDeleting ? fullTxt.substring(0, this.txt.length - 1) : fullTxt.substring(0, this.txt.length + 1);
+                this.txt = this.isDeleting
+                    ? fullTxt.substring(0, this.txt.length - 1)
+                    : fullTxt.substring(0, this.txt.length + 1);
                 this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-                
                 var that = this;
-                var delta = this.isDeleting ? 100 : 200 - Math.random() * 100;
-
+                var delta = this.isDeleting ? 80 : 120;
                 if (!this.isDeleting && this.txt === fullTxt) {
                     delta = this.period;
                     this.isDeleting = true;
                 } else if (this.isDeleting && this.txt === "") {
                     this.isDeleting = false;
                     this.loopNum++;
-                    delta = 500;
+                    delta = 400;
                 }
-
-                setTimeout(function () {
-                    that.tick();
-                }, delta);
+                setTimeout(function() { that.tick(); }, delta);
             };
-
             var elements = document.getElementsByClassName("typewrite");
             for (var i = 0; i < elements.length; i++) {
                 var toRotate = elements[i].getAttribute("data-type");
                 var period = elements[i].getAttribute("data-period");
-                if (toRotate) {
-                    new TxtType(elements[i], JSON.parse(toRotate), period);
-                }
+                if (toRotate) new TxtType(elements[i], JSON.parse(toRotate), period);
             }
+
+            // Fade-in on scroll
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+            // Active nav link on scroll
+            var sections = document.querySelectorAll('section[id]');
+            var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            var sectionObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(function(link) { link.classList.remove('active'); });
+                        var active = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
+                        if (active) active.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.3 });
+            sections.forEach(function(section) { sectionObserver.observe(section); });
+        });
+
+        // Theme toggle
+        function toggleTheme() {
+            var current = document.documentElement.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            document.querySelector('.theme-toggle i').className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        (function() {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                var icon = document.querySelector('.theme-toggle i');
+                if (icon) icon.className = 'fas fa-sun';
+            }
+        })();
+
+        // Mobile menu
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('active');
+            });
         });
     </script>
 </body>
