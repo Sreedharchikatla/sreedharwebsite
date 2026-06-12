@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Resume of Sreedhar Chikatla — Network Administrator & Cloud Engineer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <title>Resume | Sreedhar Chikatla</title>
+    <style>
+        .resume-page {
+            padding: 100px 0 60px;
+            min-height: 100vh;
+        }
+        .resume-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-sm);
+        }
+        .resume-header {
+            text-align: center;
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--sky-light);
+        }
+        .resume-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        .resume-header p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+        .resume-header .resume-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+        .resume-header .resume-contact a {
+            color: var(--sky-dark);
+        }
+        .resume-section {
+            margin-bottom: 32px;
+        }
+        .resume-section h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--sky-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .resume-entry {
+            margin-bottom: 20px;
+        }
+        .resume-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .resume-entry-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .resume-entry-date {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        .resume-entry-company {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 8px;
+        }
+        .resume-entry ul {
+            list-style: none;
+            padding: 0;
+        }
+        .resume-entry ul li {
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 5px;
+            line-height: 1.6;
+        }
+        .resume-entry ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--sky);
+        }
+        .resume-skills-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .resume-skills-list li {
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            padding-left: 16px;
+            position: relative;
+            list-style: none;
+        }
+        .resume-skills-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--sky);
+        }
+        .resume-certs-list {
+            list-style: none;
+            padding: 0;
+        }
+        .resume-certs-list li {
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .resume-certs-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--sky);
+        }
+        .resume-actions {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--gray-700);
+            border: 1.5px solid var(--gray-300);
+        }
+        .btn-outline:hover {
+            border-color: var(--sky);
+            color: var(--sky-dark);
+        }
+        @media print {
+            .navbar, .resume-actions, .footer { display: none; }
+            .resume-page { padding: 0; }
+            .resume-card { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+        }
+        @media (max-width: 768px) {
+            .resume-card { padding: 24px 20px; }
+            .resume-skills-list { grid-template-columns: 1fr; }
+            .resume-entry-header { flex-direction: column; gap: 2px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="nav-logo">Sreedhar<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="/#experience">Experience</a></li>
+                <li><a href="/#skills">Skills</a></li>
+                <li><a href="/#certifications">Certifications</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="resume.html" class="active">Resume</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="resume-page">
+        <div class="container">
+            <div class="resume-card">
+                <div class="resume-header">
+                    <h1>Sreedhar Chikatla</h1>
+                    <p>Network Administrator & Cloud Engineer</p>
+                    <div class="resume-contact">
+                        <span><i class="fas fa-envelope"></i> sridharcheekatla@hotmail.com</span>
+                        <span><i class="fas fa-map-marker-alt"></i> United States</span>
+                        <span><a href="https://linkedin.com/in/sreedharchikatla" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></span>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h2>Education</h2>
+                    <div class="resume-entry">
+                        <div class="resume-entry-header">
+                            <span class="resume-entry-title">Master of Science in Information Technology</span>
+                            <span class="resume-entry-date">May 2024</span>
+                        </div>
+                        <p class="resume-entry-company">Valparaiso University, Valparaiso, IN</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h2>Work Experience</h2>
+
+                    <div class="resume-entry">
+                        <div class="resume-entry-header">
+                            <span class="resume-entry-title">Network Administrator</span>
+                            <span class="resume-entry-date">May 2023 — Present</span>
+                        </div>
+                        <p class="resume-entry-company">Exam Works · New Jersey</p>
+                        <ul>
+                            <li>Deployed and configured network infrastructure, including routers, switches, patch panels, and structured cabling, supporting high-availability systems</li>
+                            <li>Configured and maintained virtualization technologies such as Hyper-V, VMware, and other hypervisors, ensuring high availability and performance</li>
+                            <li>Implemented and optimized network infrastructure, configuring TCP/IP, DNS, load balancers, and firewalls to enhance security and traffic management</li>
+                            <li>Managed and maintained Active Directory, DNS, DHCP, and Group Policy configurations, supporting enterprise infrastructure needs</li>
+                            <li>Monitored and maintained physical and virtualized server environments, ensuring hardware reliability and performance in a data center setting</li>
+                            <li>Established incident management processes, enhancing root cause analysis, performance monitoring, and capacity planning to meet SLAs and SLOs</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-entry">
+                        <div class="resume-entry-header">
+                            <span class="resume-entry-title">Cloud Ops Administration Analyst</span>
+                            <span class="resume-entry-date">Sep 2021 — Jan 2023</span>
+                        </div>
+                        <p class="resume-entry-company">Accenture · Client: CVS Health · Hyderabad, India</p>
+                        <ul>
+                            <li>Implemented and optimized cloud infrastructure on AWS and Azure, ensuring high availability, scalability, and reliability</li>
+                            <li>Managed and troubleshot Windows and Linux virtual machines, reducing average resolution time by 40% and ensuring 99.9% system uptime</li>
+                            <li>Enhanced infrastructure performance by optimizing Ansible and Terraform, reducing maintenance overhead and improving operational efficiency</li>
+                            <li>Designed and deployed resilient storage and backup solutions, improving scalability and performance by 25%</li>
+                            <li>Collaborated with cross-functional teams to improve cloud cost efficiency and optimize infrastructure expenditures</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-entry">
+                        <div class="resume-entry-header">
+                            <span class="resume-entry-title">Network Engineer</span>
+                            <span class="resume-entry-date">Mar 2018 — Jun 2021</span>
+                        </div>
+                        <p class="resume-entry-company">Saven Global Services · Client: Vultus Inc · Hyderabad, India</p>
+                        <ul>
+                            <li>Deployed and managed small office network infrastructure, including routers, switches, and patch panels</li>
+                            <li>Set up VPN tunnels between on-premises and Azure networks, optimizing NAT policies, routing, and Sonic firewall configurations to reduce latency by 15%</li>
+                            <li>Implemented network virtualization to reduce latency by 35% and improve data transfer speeds by 20%</li>
+                            <li>Managed Windows-based systems including server builds for Windows 2008/2012/2016, reducing downtime by 30%</li>
+                            <li>Installed, terminated, and tested fiber optic cables to support high-speed data connectivity</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-entry">
+                        <div class="resume-entry-header">
+                            <span class="resume-entry-title">System Administrator</span>
+                            <span class="resume-entry-date">Oct 2016 — Mar 2018</span>
+                        </div>
+                        <p class="resume-entry-company">CMS IT Services · Hyderabad, India</p>
+                        <ul>
+                            <li>Administered Windows servers, VMware ESXi, and Hyper-V environments ensuring high availability and optimal performance</li>
+                            <li>Developed PowerShell scripts to automate tasks, reducing manual intervention and minimizing risk of human error</li>
+                            <li>Conducted proactive monitoring and performance analysis using Nagios and Zabbix</li>
+                            <li>Managed network services (DNS, DHCP, VPN) and Citrix environments, coordinating updates, patches, and upgrades</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h2>Certifications</h2>
+                    <ul class="resume-certs-list">
+                        <li>Microsoft Certified: Azure Security Engineer Associate (AZ-500)</li>
+                        <li>Microsoft Certified: Azure Administrator Associate (AZ-104)</li>
+                        <li>Microsoft Certified: Azure Fundamentals</li>
+                        <li>MCSA: Windows Server 2012</li>
+                    </ul>
+                </div>
+
+                <div class="resume-section">
+                    <h2>Skills</h2>
+                    <ul class="resume-skills-list">
+                        <li>Cloud: Azure, AWS, Google Cloud Platform</li>
+                        <li>IaC: Terraform, ARM Templates, Ansible</li>
+                        <li>Containers: Docker, Kubernetes</li>
+                        <li>Scripting: PowerShell, Bash, Python</li>
+                        <li>Monitoring: Azure Monitor, Log Analytics, Nagios, Zabbix</li>
+                        <li>OS: Ubuntu, CentOS, RedHat, Windows Server</li>
+                        <li>Networking: TCP/IP, DNS, DHCP, VPN, Firewalls</li>
+                        <li>Virtualization: Hyper-V, VMware ESXi</li>
+                    </ul>
+                </div>
+
+                <div class="resume-actions">
+                    <a href="assets/resume.pdf" download class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <button onclick="window.print()" class="btn btn-outline">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                    <a href="/" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Back to Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sreedhar Chikatla</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            var current = document.documentElement.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            document.querySelector('.theme-toggle i').className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        (function() {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                var icon = document.querySelector('.theme-toggle i');
+                if (icon) icon.className = 'fas fa-sun';
+            }
+        })();
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
